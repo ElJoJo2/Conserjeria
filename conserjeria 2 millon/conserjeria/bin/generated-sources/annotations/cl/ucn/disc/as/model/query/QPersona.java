@@ -35,10 +35,10 @@ public final class QPersona extends TQRootBean<Persona,QPersona> {
     return _alias;
   }
 
-  public PLong<QPersona> id;
-  public PLong<QPersona> version;
   public PInstant<QPersona> created;
+  public PLong<QPersona> id;
   public PInstant<QPersona> modified;
+  public PLong<QPersona> version;
   public PString<QPersona> rut;
   public PString<QPersona> nombre;
   public PString<QPersona> apellidos;
@@ -108,10 +108,10 @@ public final class QPersona extends TQRootBean<Persona,QPersona> {
    */
   @Generated("io.ebean.querybean.generator")
   public static final class Alias {
-    public static PLong<QPersona> id = _alias.id;
-    public static PLong<QPersona> version = _alias.version;
     public static PInstant<QPersona> created = _alias.created;
+    public static PLong<QPersona> id = _alias.id;
     public static PInstant<QPersona> modified = _alias.modified;
+    public static PLong<QPersona> version = _alias.version;
     public static PString<QPersona> rut = _alias.rut;
     public static PString<QPersona> nombre = _alias.nombre;
     public static PString<QPersona> apellidos = _alias.apellidos;
@@ -123,10 +123,10 @@ public final class QPersona extends TQRootBean<Persona,QPersona> {
   @Generated("io.ebean.querybean.generator")
   @TypeQueryBean("v1")
   public static final class Assoc<R> extends TQAssocBean<Persona,R,QPersona> {
-    public PLong<R> id;
-    public PLong<R> version;
     public PInstant<R> created;
+    public PLong<R> id;
     public PInstant<R> modified;
+    public PLong<R> version;
     public PString<R> rut;
     public PString<R> nombre;
     public PString<R> apellidos;

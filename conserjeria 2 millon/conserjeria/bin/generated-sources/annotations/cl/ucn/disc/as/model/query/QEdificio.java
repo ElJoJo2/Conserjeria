@@ -41,6 +41,7 @@ public final class QEdificio extends TQRootBean<Edificio,QEdificio> {
   public PInstant<QEdificio> modified;
   public PString<QEdificio> nombre;
   public PString<QEdificio> direccion;
+  public QDepartamento.Assoc<QEdificio> departamentos;
 
 
   /**
@@ -111,6 +112,7 @@ public final class QEdificio extends TQRootBean<Edificio,QEdificio> {
     public static PInstant<QEdificio> modified = _alias.modified;
     public static PString<QEdificio> nombre = _alias.nombre;
     public static PString<QEdificio> direccion = _alias.direccion;
+    public static QDepartamento.Assoc<QEdificio> departamentos = _alias.departamentos;
   }
 
   /**  Association query bean */
@@ -123,6 +125,7 @@ public final class QEdificio extends TQRootBean<Edificio,QEdificio> {
     public PInstant<R> modified;
     public PString<R> nombre;
     public PString<R> direccion;
+    public QDepartamento.Assoc<R> departamentos;
 
     public Assoc(String name, R root) {
       super(name, root);

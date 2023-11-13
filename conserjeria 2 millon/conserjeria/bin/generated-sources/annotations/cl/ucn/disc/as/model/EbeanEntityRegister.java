@@ -9,7 +9,7 @@ import io.ebean.config.ModuleInfo;
 import io.ebean.config.EntityClassRegister;
 
 @Generated("io.ebean.querybean.generator")
-@ModuleInfo(entities={"cl.ucn.disc.as.model.Edificio","cl.ucn.disc.as.model.Persona"})
+@ModuleInfo(entities={"cl.ucn.disc.as.model.Contrato","cl.ucn.disc.as.model.Departamento","cl.ucn.disc.as.model.Edificio","cl.ucn.disc.as.model.Pago","cl.ucn.disc.as.model.Persona"})
 public class EbeanEntityRegister implements EntityClassRegister {
 
   /**
@@ -24,7 +24,10 @@ public class EbeanEntityRegister implements EntityClassRegister {
    */
   private List<Class<?>> defaultEntityClasses() {
     List<Class<?>> entities = new ArrayList<>();
+    entities.add(cl.ucn.disc.as.model.Contrato.class);
+    entities.add(cl.ucn.disc.as.model.Departamento.class);
     entities.add(cl.ucn.disc.as.model.Edificio.class);
+    entities.add(cl.ucn.disc.as.model.Pago.class);
     entities.add(cl.ucn.disc.as.model.Persona.class);
     return entities;
   }

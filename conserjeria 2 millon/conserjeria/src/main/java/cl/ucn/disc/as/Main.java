@@ -8,8 +8,10 @@ import cl.ucn.disc.as.services.Sistema;
 import cl.ucn.disc.as.services.SistemaImpl;
 import io.ebean.DB;
 import io.ebean.Database;
+import io.javalin.Javalin;
 import lombok.extern.slf4j.Slf4j;
-
+import cl.ucn.disc.as.ui.ApiRestServer;
+import cl.ucn.disc.as.ui.WebController;
 import java.sql.DatabaseMetaData;
 import java.util.Optional;
 
@@ -34,15 +36,11 @@ public class Main {
         Database db = DB.getDefault();
 
         Sistema sistema = new SistemaImpl(db);
+        
+        //Start the API Rest Server
+        Javalin app = ApiRestServer.start(7070,new WebController());
 
-        Edificio edificio = Edificio.builder()
-                .nombre("Y1")
-                .direccion("Angamos #0610 (al lado de la virgencita")
-                .build();
-        log.debug("Edificio");
-
-        edificio = sistema.add(edificio);
-        log.debug("Edificio before db: {}",edificio);
+        app.stop();
 
         /**Persona persona = Persona.builder()
                 .rut("20600505-K")

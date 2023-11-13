@@ -4,7 +4,7 @@
 
 package cl.ucn.disc.as.model;
 
-import cl.ucn.disc.as.model.exceptions.IllegalDomainException;
+import cl.ucn.disc.as.exceptions.IllegalDomainException;
 import cl.ucn.disc.as.utils.ValidationUtils;
 import io.ebean.annotation.NotNull;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,6 @@ import javax.persistence.Entity;
  * @author Diego Urrutia-Astorga.
  */
 @ToString(callSuper = true)
-@AllArgsConstructor
 @Builder
 @Entity
 public class Persona extends BaseModel {
@@ -54,31 +53,52 @@ public class Persona extends BaseModel {
     @NotNull
     private String telefono;
 
-    public static class PersonaBuilder {
+    public Persona(String rut, String nombre, String apellidos, String email, String telefono) {
+        this.rut = rut;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.telefono = telefono;
+    }
 
-        /**
-         * @return the Persona
-         */
-        public Persona build() {
-            //validate rut
-            if (!ValidationUtils.isRutValid(this.rut)) {
+    public String getRut() {
+        return rut;
+    }
 
-                throw new IllegalDomainException("Rut no valido: " + this.rut);
+    public String getNombre() {
+        return nombre;
+    }
 
-            }
-            //validate email
-            if (!ValidationUtils.isEmailValid(this.email)) {
+    public String getApellidos() {
+        return apellidos;
+    }
 
-                throw new IllegalDomainException("Email no valido: " + this.email);
+    public String getEmail() {
+        return email;
+    }
 
-            }
+    public String getTelefono() {
+        return telefono;
+    }
 
-            //TODO: add the validations
-            return new Persona(this.rut, this.nombre, this.apellidos, this.email, this.telefono);
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-        }
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 

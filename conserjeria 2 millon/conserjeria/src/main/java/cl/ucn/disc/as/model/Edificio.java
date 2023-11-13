@@ -6,12 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 
 
-@ToString(callSuper = true)
-@AllArgsConstructor
-@Builder
+/**
+ * The Edificio class
+ */
 @Entity
 public class Edificio extends BaseModel{
 
@@ -29,5 +31,40 @@ public class Edificio extends BaseModel{
     @NotNull
     private String direccion;
 
+    /**
+     * Departamentos
+     */
+    @Getter
+    @NotNull
+    private List<Departamento> departamentos;
+
+    public Edificio(String nombre, String direccion){
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public String getDireccion(){
+        return direccion;
+    }
+
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
+    }
+
+    public void addDepartamento(Departamento departamento){
+        departamentos.add(departamento);
+    }
+
+    public List<Departamento> getDepartamentos(){
+        return departamentos;
+    }
 
 }
