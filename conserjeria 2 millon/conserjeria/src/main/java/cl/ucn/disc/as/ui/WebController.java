@@ -42,6 +42,34 @@ public final class WebController  implements RoutesConfigurator {
 
         });
 
+        app.get("/grpc/personas/rut/{rut}", ctx -> {
+            String rut = ctx.pathParam("rut");
+
+            ManagedChannel channel = ManagedChannelBuilder
+                    .forAddress("127.0.0.1", 50123)
+                    .usePlaintext()
+                    .build();
+
+            PersonaGrpcServiceGrpc.PersonaGrpcServiceBlockingStub stub =
+                    PersonaGrpcServiceGrpc.newBlockingStub(channel);
+
+            PersonaGrpcResponse response = stub.retrieve(PersonaGrpcRequest
+                    .newBuilder()
+                    .setRut("20600505K")
+                    .build());
+
+            PersonaGrpc personaGrpc = response.getPersona();
+
+            Optional<Persona> oPersona = Optional.of(Persona.builder()
+                    .rut(personaGrpc.getRut())
+                    .nombre(personaGrpc.getNombre())
+                    .apellidos(personaGrpc.getApellidos())
+                    .email(personaGrpc.getEmail())
+                    .telefono(personaGrpc.getTelefono())
+                    .build());
+            ctx.json(oPersona.orElseThrow(() -> new NotFoundResponse("Can't find Persona with rut: " + rut)));
+        });
+
 
     }
 }

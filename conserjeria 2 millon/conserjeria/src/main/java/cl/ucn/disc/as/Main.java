@@ -40,6 +40,21 @@ public class Main {
         //Start the API Rest Server
         Javalin app = ApiRestServer.start(7070,new WebController());
 
+        //start the gRPC server
+        log.debug("Starting Grpc server");
+        Server server = ServerBuilder
+                .forPort(50123)
+                .addService(new PersonaGrpcServiceImpl())
+                .build();
+        server.start();
+
+        //shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread(Server::shutdown));
+
+        server.awaitTermination();
+
+        log.debug("Done. :)");
+
         app.stop();
 
         /**Persona persona = Persona.builder()
