@@ -1,9 +1,10 @@
 package cl.ucn.disc.as.ui;
 
-import cl.ucn.disc.as.grpc.PersonaGrpc;
-import cl.ucn.disc.as.grpc.PersonaGrpcRequest;
-import cl.ucn.disc.as.grpc.PersonaGrpcResponse;
-import cl.ucn.disc.as.grpc.PersonaGrpcServiceGrpc;
+
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpc;
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpcRequest;
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpcResponse;
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpcServiceGrpc;
 import cl.ucn.disc.as.model.Persona;
 import cl.ucn.disc.as.services.Sistema;
 import cl.ucn.disc.as.services.SistemaImpl;
@@ -19,8 +20,10 @@ public final class WebController  implements RoutesConfigurator {
 
     private final Sistema sistema;
 
-    public WebController(){
+    public WebController() {
         this.sistema = new SistemaImpl(DB.getDefault());
+        // FIXME: only populate in case of new database
+        this.sistema.populate();
     }
 
     @Override

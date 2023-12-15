@@ -1,6 +1,10 @@
 package cl.ucn.disc.as.grpc;
 
-import cl.ucn.disc.as.grpc.PersonaGrpcServiceGrpc;
+
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpc;
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpcRequest;
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpcResponse;
+import cl.ucn.disc.as.conserjeria.grpc.PersonaGrpcServiceGrpc;
 import cl.ucn.disc.as.services.Sistema;
 import lombok.extern.slf4j.Slf4j;
 import io.grpc.stub.StreamObserver;
@@ -22,7 +26,7 @@ public final class PersonaGrpcServiceImpl extends PersonaGrpcServiceGrpc.Persona
     @Override
     public void retrieve(PersonaGrpcRequest request, StreamObserver<PersonaGrpcResponse> responseObserver) {
 
-        log.debug("Retrieving PersonaGrpc with rut={}.", request.getRUT());
+        log.debug("Retrieving PersonaGrpc with rut={}.", request.getRut());
 
         PersonaGrpc personaGrpc = PersonaGrpc.newBuilder()
                 .setRut("20600505K")
